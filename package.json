@@ -1,0 +1,38 @@
+{
+    "name": "we-meet-back",
+    "version": "0.0.0",
+    "description": "",
+    "main": "./dist/index.js",
+    "engines": {
+        "node": "16.x"
+    },
+    "scripts": {
+        "dev": "ts-node ./src/index.ts",
+        "start": "node ./dist/index.js",
+        "build": "npm run clean && tsc --build",
+        "clean": "rimraf ./dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Alejandrocuartas/we-meet-back.git"
+    },
+    "author": "we-meet-team",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Alejandrocuartas/we-meet-back/issues"
+    },
+    "homepage": "https://github.com/Alejandrocuartas/we-meet-back#readme",
+    "devDependencies": {
+        "@types/express": "^4.17.15",
+        "@types/node": "^18.11.18",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.4"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "mongoose": "^7.0.3",
+        "rimraf": "^4.0.5"
+    }
+}
