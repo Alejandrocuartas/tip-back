@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createEmployee, markAssist } from "../use-cases";
+import { createEmployee, markAssist, getTotalTips } from "../use-cases";
 
 const createEmployeeController = async(req: Request, res: Response) => {
     try {
@@ -23,7 +23,18 @@ const assistEmployeeController = async(req: Request, res: Response) => {
     }
 }
 
+const getTotalTipsController = async(req: Request, res: Response) => {
+    try {
+        const cc: string = req.body.cc;
+        const totalTips = await getTotalTips(cc);
+        res.status(200).json({ totalTips });
+    } catch (error: any) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 export {
     createEmployeeController,
     assistEmployeeController,
+    getTotalTipsController,
 }
