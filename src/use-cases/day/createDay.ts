@@ -3,7 +3,7 @@ import { DayType } from "../../types"
 
 const createDay = async (date: string, isDay: boolean = false): Promise<DayType> => {
     //validate day exist by date
-    const dayExist = await Day.findOne({ $and: [{date}, {isDay}]});
+    const dayExist = await Day.findOne({ $and: [{date}, {isDay}]}).populate("employees")
     if (dayExist) {
         return dayExist;
     }
