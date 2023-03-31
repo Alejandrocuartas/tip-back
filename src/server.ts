@@ -10,7 +10,7 @@ class ServerModel {
     private port
     app
     constructor() {
-        this.origin = 'http://localhost:8080';
+        this.origin = process.env.ORIGIN;
         this.app = express();
         this.port = process.env.PORT;
 
@@ -29,7 +29,6 @@ class ServerModel {
         this.app.use(express.static('docs'));
         this.app.use(express.json());
         this.app.use(cors({
-            credentials: true,
             origin: this.origin,
         }));
     }
@@ -37,13 +36,13 @@ class ServerModel {
     routes() {
         this.app.use("/api/user", EmployeeRouter)
         this.app.use("/api/day", DayRouter)
-        this.app.get('/*', (req, res) => {
+        /*this.app.get('/*', (req, res) => {
             res.sendFile(path.join(__dirname, '../docs/index.html'), (err) => {
                 if (err) {
                     res.status(500).send(err);
                 }
             });
-        });
+        });*/
     }
 
     listen() {
