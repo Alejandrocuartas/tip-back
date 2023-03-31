@@ -26,7 +26,7 @@ const assistEmployeeController = async(req: Request, res: Response) => {
 
 const getTotalTipsController = async(req: Request, res: Response) => {
     try {
-        const cc: string = req.body.cc;
+        const cc: string = req.params.cc;
         const totalTips = await getTotalTips(cc);
         res.status(200).json({ totalTips });
     } catch (error: any) {

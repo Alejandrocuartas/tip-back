@@ -4,6 +4,6 @@ const router = Router();
 
 router.post("/auth", createEmployeeController);
 router.post("/assist", assistEmployeeController)
-router.get("/tips", getTotalTipsController)
+router.get("/tips/:cc", getTotalTipsController)
 
 export default router;
