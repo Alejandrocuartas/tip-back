@@ -1,9 +1,9 @@
 import Day from "../../entities/day";
 import { DayType } from "../../types"
 
-const createDay = async (date: string): Promise<DayType> => {
+const createDay = async (date: string, isDay: boolean = false): Promise<DayType> => {
     //validate day exist by date
-    const dayExist = await Day.findOne({ date });
+    const dayExist = await Day.findOne({ $and: [{date}, {isDay}]});
     if (dayExist) {
         return dayExist;
     }
@@ -11,6 +11,7 @@ const createDay = async (date: string): Promise<DayType> => {
         date,
         tips: 0,
         employees: [],
+        isDay
     });
     const savedDay = await day.save()
     return savedDay;

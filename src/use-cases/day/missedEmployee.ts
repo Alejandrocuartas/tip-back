@@ -1,7 +1,7 @@
 import Day from "../../entities/day";
 import Employee from "../../entities/employee";
 
-const enterMissedE = async(date: string, ccAdmin: string, cc: string) => {
+const enterMissedE = async(date: string, ccAdmin: string, cc: string, isDay: boolean = false) => {
     //validate employee exists 
     const employeeAdmin = await Employee.findOne({ cc: ccAdmin });
     if (!employeeAdmin?.isCashier) {
@@ -12,7 +12,7 @@ const enterMissedE = async(date: string, ccAdmin: string, cc: string) => {
         throw new Error("Employee does not exist");
     }
     //validate day exist by date
-    const dayExist = await Day.findOne({ date });
+    const dayExist = await Day.findOne({ $and: [{date}, {isDay}] });
     if (!dayExist) {
         throw new Error("day not found")
     }

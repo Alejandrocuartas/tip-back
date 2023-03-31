@@ -16,7 +16,8 @@ const assistEmployeeController = async(req: Request, res: Response) => {
     try {
         const date: string = req.body.date;
         const cc: string = req.body.cc;
-        const day = await markAssist(cc, date);
+        const isDay: boolean = req.body.isDay;
+        const day = await markAssist(cc, date, isDay);
         res.status(200).json({ day });
     } catch (error: any) {
         res.status(500).json({ error: error.message });
