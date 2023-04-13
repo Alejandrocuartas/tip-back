@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { createEmployee, markAssist, getTotalTips } from "../use-cases";
+import { createEmployee, markAssist, getTotalTips, deleteFromDay } from "../use-cases";
 
-const createEmployeeController = async(req: Request, res: Response) => {
+const createEmployeeController = async (req: Request, res: Response) => {
     try {
         const name: string = req.body.name;
         const cc: string = req.body.cc;
@@ -12,7 +12,7 @@ const createEmployeeController = async(req: Request, res: Response) => {
     }
 }
 
-const assistEmployeeController = async(req: Request, res: Response) => {
+const assistEmployeeController = async (req: Request, res: Response) => {
     try {
         const date: string = req.body.date;
         const cc: string = req.body.cc;
@@ -24,7 +24,7 @@ const assistEmployeeController = async(req: Request, res: Response) => {
     }
 }
 
-const getTotalTipsController = async(req: Request, res: Response) => {
+const getTotalTipsController = async (req: Request, res: Response) => {
     try {
         const cc: string = req.params.cc;
         const totalTips = await getTotalTips(cc);
@@ -34,8 +34,22 @@ const getTotalTipsController = async(req: Request, res: Response) => {
     }
 }
 
+const deleteFromDayController = async (req: Request, res: Response) => {
+    try {
+        const date: string = req.body.date;
+        const cc: string = req.body.cc;
+        const isDay: boolean = req.body.isDay;
+        const ccAdmin = req.body.ccAdmin;
+        const day = await deleteFromDay(date, ccAdmin, cc, isDay);
+        res.status(200).json({ day });
+    } catch (error: any) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 export {
     createEmployeeController,
     assistEmployeeController,
     getTotalTipsController,
+    deleteFromDayController,
 }
