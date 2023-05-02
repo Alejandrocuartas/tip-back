@@ -5,6 +5,7 @@ import enterTips from "./day/enterTips";
 import enterMissedE from "./day/missedEmployee";
 import getTotalTips from "./employee/totalTips";
 import clearCounts from "./day/clearCounts";
+import getEmployeesTips from "./employee/getEmployeesTips";
 
 export {
     createEmployee,
@@ -14,4 +15,5 @@ export {
     enterMissedE,
     getTotalTips,
     clearCounts,
+    getEmployeesTips,
 }
