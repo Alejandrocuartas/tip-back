@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createEmployee, markAssist, getTotalTips, deleteFromDay } from "../use-cases";
+import { createEmployee, markAssist, getTotalTips, getEmployeesTips, deleteFromDay } from "../use-cases";
 
 const createEmployeeController = async (req: Request, res: Response) => {
     try {
@@ -47,9 +47,20 @@ const deleteFromDayController = async (req: Request, res: Response) => {
     }
 }
 
+const getEmployeesTipsController = async (req: Request, res: Response) => {
+    try {
+        const ccAdmin: string = req.params.ccAdmin;
+        const employeesTips = await getEmployeesTips(ccAdmin);
+        res.status(200).json({ employeesTips });
+    } catch (error: any) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 export {
     createEmployeeController,
     assistEmployeeController,
     getTotalTipsController,
     deleteFromDayController,
+    getEmployeesTipsController,
 }
