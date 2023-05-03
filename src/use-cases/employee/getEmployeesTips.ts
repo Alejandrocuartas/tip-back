@@ -12,11 +12,8 @@ const getEmployeesTips = async (ccAdmin: string) => {
         days.forEach(day => {
             const dayTips = Number(day.tips / day.employees.length)
             totalEmployees[i].totalTips += dayTips
-            console.log(dayTips)
-            console.log(totalEmployees[i].totalTips)
         })
     }
-    console.log(totalEmployees)
     return totalEmployees;
 }
 
